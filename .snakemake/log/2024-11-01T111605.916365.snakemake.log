@@ -1,0 +1,37 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                           count
+--------------------------  -------
+all                               1
+plot_rescaled_distribution        1
+total                             2
+
+Select jobs to execute...
+
+[Fri Nov  1 11:16:06 2024]
+rule plot_rescaled_distribution:
+    input: reference_normalized.txt, rescale_to_reference
+    output: rescale_plot.png
+    jobid: 4
+    reason: Missing output files: rescale_plot.png
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 11:16:11 2024]
+Finished job 4.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Fri Nov  1 11:16:11 2024]
+localrule all:
+    input: rescale_to_reference, rescale_plot.png
+    jobid: 0
+    reason: Input files updated by another job: rescale_plot.png
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 11:16:11 2024]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2024-11-01T111605.916365.snakemake.log

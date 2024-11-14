@@ -1,0 +1,64 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                            count
+---------------------------  -------
+all                                1
+load_query_distribution            1
+load_reference_distribution        1
+subsample_query                    1
+total                              4
+
+Select jobs to execute...
+
+[Fri Nov  1 12:45:39 2024]
+rule load_query_distribution:
+    input: shuf.a.bed.gz
+    output: query_distribution.txt
+    jobid: 2
+    reason: Missing output files: query_distribution.txt
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 12:46:05 2024]
+Finished job 2.
+1 of 4 steps (25%) done
+Select jobs to execute...
+
+[Fri Nov  1 12:46:05 2024]
+rule load_reference_distribution:
+    input: reference.hist
+    output: reference_normalized.txt
+    jobid: 3
+    reason: Missing output files: reference_normalized.txt; Code has changed since last execution
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 12:46:07 2024]
+Finished job 3.
+2 of 4 steps (50%) done
+Select jobs to execute...
+
+[Fri Nov  1 12:46:07 2024]
+rule subsample_query:
+    input: query_distribution.txt, reference_normalized.txt
+    output: output/query_subsampled_plot.png
+    jobid: 1
+    reason: Missing output files: output/query_subsampled_plot.png; Input files updated by another job: query_distribution.txt, reference_normalized.txt
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 12:46:07 2024]
+Error in rule subsample_query:
+    jobid: 1
+    input: query_distribution.txt, reference_normalized.txt
+    output: output/query_subsampled_plot.png
+
+RuleException:
+WorkflowError in file /home/bec51319.iitr/workplace/rescale_to_reference/rescale_to_reference.smk, line 40:
+Failed to open source file /home/bec51319.iitr/workplace/rescale_to_reference/scripts/subsample_and_plot.py
+FileNotFoundError: [Errno 2] No such file or directory: '/home/bec51319.iitr/workplace/rescale_to_reference/scripts/subsample_and_plot.py'
+  File "/home/bec51319.iitr/workplace/rescale_to_reference/rescale_to_reference.smk", line 40, in __rule_subsample_query
+  File "/home/bec51319.iitr/miniforge3/envs/snakemake_env/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-11-01T124538.928591.snakemake.log

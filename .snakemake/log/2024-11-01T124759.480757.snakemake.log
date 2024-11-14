@@ -1,0 +1,35 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+all                    1
+subsample_query        1
+total                  2
+
+Select jobs to execute...
+
+[Fri Nov  1 12:48:00 2024]
+rule subsample_query:
+    input: query_distribution.txt, reference_normalized.txt
+    output: output/query_subsampled_plot.png
+    jobid: 1
+    reason: Missing output files: output/query_subsampled_plot.png
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 12:48:02 2024]
+Error in rule subsample_query:
+    jobid: 1
+    input: query_distribution.txt, reference_normalized.txt
+    output: output/query_subsampled_plot.png
+
+RuleException:
+CalledProcessError in file /home/bec51319.iitr/workplace/rescale_to_reference/rescale_to_reference.smk, line 40:
+Command 'set -euo pipefail;  /home/bec51319.iitr/miniforge3/envs/snakemake_env/bin/python3.10 /home/bec51319.iitr/workplace/rescale_to_reference/.snakemake/scripts/tmps1sne4mv.subsample_and_plot.py' returned non-zero exit status 1.
+  File "/home/bec51319.iitr/workplace/rescale_to_reference/rescale_to_reference.smk", line 40, in __rule_subsample_query
+  File "/home/bec51319.iitr/miniforge3/envs/snakemake_env/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-11-01T124759.480757.snakemake.log

@@ -1,0 +1,37 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+all                    1
+subsample_query        1
+total                  2
+
+Select jobs to execute...
+
+[Fri Nov  1 12:50:23 2024]
+rule subsample_query:
+    input: query_distribution.txt, reference_normalized.txt
+    output: output/query_subsampled_plot.png
+    jobid: 1
+    reason: Missing output files: output/query_subsampled_plot.png
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 12:50:25 2024]
+Finished job 1.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Fri Nov  1 12:50:25 2024]
+localrule all:
+    input: rescale_to_reference, output/query_subsampled_plot.png
+    jobid: 0
+    reason: Input files updated by another job: output/query_subsampled_plot.png
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 12:50:25 2024]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2024-11-01T125022.541459.snakemake.log

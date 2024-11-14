@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in rule all in file /home/bec51319.iitr/workplace/rescale_to_reference/rescale_to_reference.smk, line 1:
+Missing input files for rule all:
+    affected files:
+        rescale_plot.png
